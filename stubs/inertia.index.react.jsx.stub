@@ -1,0 +1,26 @@
+import { Head, Link } from '@inertiajs/react'
+
+export default function Index() {
+  return (
+    <>
+      <Head title="Index" />
+
+      <div className="p-6">
+        <div className="mb-6 flex items-center justify-between">
+          <h1 className="text-xl font-semibold">Index</h1>
+
+          <Link
+            className="rounded-lg bg-black px-4 py-2 text-white hover:opacity-90"
+            href={route('{{ routeResource }}.create')}
+          >
+            Create
+          </Link>
+        </div>
+
+        <div className="rounded-xl border bg-white p-4">
+          <p className="text-sm text-gray-600">Your React Index page is ready.</p>
+        </div>
+      </div>
+    </>
+  )
+}

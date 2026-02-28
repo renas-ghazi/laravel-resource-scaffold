@@ -1,0 +1,34 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ controllerNamespace }};
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
+class {{ controllerClass }} extends Controller
+{
+    public function index()
+    {
+        return view('{{ bladeIndexView }}');
+    }
+
+    public function create()
+    {
+        return view('{{ bladeCreateView }}');
+    }
+
+    public function store(Request $request)
+    {
+        // $data = $request->validate([
+        //     // ...
+        // ]);
+
+        // \App\Models\{{ model }}::create($data);
+
+        return redirect()
+            ->route('{{ routeResource }}.index')
+            ->with('success', '{{ model }} created.');
+    }
+}

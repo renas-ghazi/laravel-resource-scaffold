@@ -1,0 +1,28 @@
+import { Head, Link } from '@inertiajs/react'
+
+export default function Show(props) {
+  const { {{ modelVariable }} } = props
+
+  return (
+    <>
+      <Head title="Show" />
+
+      <div className="p-6">
+        <div className="mb-6 flex items-center justify-between">
+          <h1 className="text-xl font-semibold">Show</h1>
+
+          <Link className="text-sm underline" href={route('{{ routeResource }}.index')}>
+            Back
+          </Link>
+        </div>
+
+        <div className="rounded-xl border bg-white p-4">
+          <p className="mb-3 text-sm text-gray-600">Your React Show page is ready.</p>
+          <pre className="overflow-auto rounded bg-gray-50 p-3 text-xs">
+            {JSON.stringify({{ modelVariable }}, null, 2)}
+          </pre>
+        </div>
+      </div>
+    </>
+  )
+}

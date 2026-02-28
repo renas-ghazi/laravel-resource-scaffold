@@ -1,0 +1,29 @@
+<div class="p-6">
+    <div class="mb-6 flex items-center justify-between">
+        <h1 class="text-xl font-semibold">Edit</h1>
+
+        <a class="text-sm underline" href="{{ route('{{ routeResource }}.index') }}">
+            Back
+        </a>
+    </div>
+
+    <form
+        method="POST"
+        action="{{ route('{{ routeResource }}.update', ${{ modelVariable }}) }}"
+        class="space-y-4 rounded-xl border bg-white p-4"
+    >
+        @csrf
+        @method('PUT')
+
+        <div class="text-sm text-gray-600">
+            Your Blade Edit view is ready.
+        </div>
+
+        <button
+            type="submit"
+            class="rounded-lg bg-black px-4 py-2 text-white hover:opacity-90"
+        >
+            Update
+        </button>
+    </form>
+</div>

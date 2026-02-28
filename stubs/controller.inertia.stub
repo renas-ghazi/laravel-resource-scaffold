@@ -1,0 +1,35 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ controllerNamespace }};
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Inertia\Inertia;
+
+class {{ controllerClass }} extends Controller
+{
+    public function index()
+    {
+        return Inertia::render('{{ inertiaIndexComponent }}', [
+            // 'items' => \App\Models\{{ model }}::latest()->paginate(15),
+        ]);
+    }
+
+    public function create()
+    {
+        return Inertia::render('{{ inertiaCreateComponent }}');
+    }
+
+    public function store(Request $request)
+    {
+        // $data = $request->validate([
+        //     // ...
+        // ]);
+
+        // \App\Models\{{ model }}::create($data);
+
+        return back()->with('success', '{{ model }} created.');
+    }
+}

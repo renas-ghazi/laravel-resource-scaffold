@@ -1,0 +1,30 @@
+<script setup lang="ts">
+import { Head, Link } from '@inertiajs/vue3'
+
+defineProps<{
+  // items?: unknown
+}>()
+</script>
+
+<template>
+  <Head title="Index" />
+
+  <div class="p-6">
+    <div class="mb-6 flex items-center justify-between">
+      <h1 class="text-xl font-semibold">Index</h1>
+
+      <Link
+        class="rounded-lg bg-black px-4 py-2 text-white hover:opacity-90"
+        :href="route('{{ routeResource }}.create')"
+      >
+        Create
+      </Link>
+    </div>
+
+    <div class="rounded-xl border bg-white p-4">
+      <p class="text-sm text-gray-600">
+        Your Index page is ready ✅
+      </p>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,43 @@
+<script setup>
+import { Head, Link, useForm } from '@inertiajs/vue3'
+
+const props = defineProps({
+  {{ modelVariable }}: Object,
+})
+
+const form = useForm({
+  // ...props.{{ modelVariable }},
+})
+
+const submit = () => {
+  form.put(route('{{ routeResource }}.update', props.{{ modelVariable }}.id))
+}
+</script>
+
+<template>
+  <Head title="Edit" />
+
+  <div class="p-6">
+    <div class="mb-6 flex items-center justify-between">
+      <h1 class="text-xl font-semibold">Edit</h1>
+
+      <Link class="text-sm underline" :href="route('{{ routeResource }}.index')">
+        Back
+      </Link>
+    </div>
+
+    <form @submit.prevent="submit" class="space-y-4 rounded-xl border bg-white p-4">
+      <div class="text-sm text-gray-600">
+        Your Edit page is ready ✅
+      </div>
+
+      <button
+        type="submit"
+        class="rounded-lg bg-black px-4 py-2 text-white hover:opacity-90 disabled:opacity-50"
+        :disabled="form.processing"
+      >
+        Update
+      </button>
+    </form>
+  </div>
+</template>

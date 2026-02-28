@@ -1,0 +1,50 @@
+import { Head, Link, useForm } from '@inertiajs/react'
+import type { FormEvent } from 'react'
+
+type ResourceItem = {
+  id: number | string
+  [key: string]: unknown
+}
+
+type Props = {
+  {{ modelVariable }}: ResourceItem
+}
+
+export default function Edit({ {{ modelVariable }} }: Props): JSX.Element {
+  const form = useForm<Record<string, unknown>>({
+    // ...{{ modelVariable }},
+  })
+
+  const submit = (event: FormEvent<HTMLFormElement>): void => {
+    event.preventDefault()
+    form.put(route('{{ routeResource }}.update', {{ modelVariable }}.id))
+  }
+
+  return (
+    <>
+      <Head title="Edit" />
+
+      <div className="p-6">
+        <div className="mb-6 flex items-center justify-between">
+          <h1 className="text-xl font-semibold">Edit</h1>
+
+          <Link className="text-sm underline" href={route('{{ routeResource }}.index')}>
+            Back
+          </Link>
+        </div>
+
+        <form onSubmit={submit} className="space-y-4 rounded-xl border bg-white p-4">
+          <div className="text-sm text-gray-600">Your React Edit page is ready.</div>
+
+          <button
+            type="submit"
+            className="rounded-lg bg-black px-4 py-2 text-white hover:opacity-90 disabled:opacity-50"
+            disabled={form.processing}
+          >
+            Update
+          </button>
+        </form>
+      </div>
+    </>
+  )
+}

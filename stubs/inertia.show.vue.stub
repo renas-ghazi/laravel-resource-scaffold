@@ -1,0 +1,29 @@
+<script setup>
+import { Head, Link } from '@inertiajs/vue3'
+
+const props = defineProps({
+  {{ modelVariable }}: Object,
+})
+</script>
+
+<template>
+  <Head title="Show" />
+
+  <div class="p-6">
+    <div class="mb-6 flex items-center justify-between">
+      <h1 class="text-xl font-semibold">Show</h1>
+
+      <Link class="text-sm underline" :href="route('{{ routeResource }}.index')">
+        Back
+      </Link>
+    </div>
+
+    <div class="rounded-xl border bg-white p-4">
+      <p class="mb-3 text-sm text-gray-600">
+        Your Show page is ready ✅
+      </p>
+
+      <pre class="overflow-auto rounded bg-gray-50 p-3 text-xs">{{ JSON.stringify(props.{{ modelVariable }}, null, 2) }}</pre>
+    </div>
+  </div>
+</template>

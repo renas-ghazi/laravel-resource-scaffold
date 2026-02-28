@@ -1,0 +1,41 @@
+{
+  "name": "renas/laravel-resource-scaffold",
+  "description": "Scaffold Laravel resources for Inertia (Vue/React) or Blade (migration, model, controller, pages/views).",
+  "keywords": [
+    "laravel",
+    "inertia",
+    "scaffold",
+    "generator",
+    "vue",
+    "react",
+    "blade"
+  ],
+  "type": "library",
+  "homepage": "https://github.com/renas-ghazi/laravel-resource-scaffold",
+  "support": {
+    "issues": "https://github.com/renas-ghazi/laravel-resource-scaffold/issues",
+    "source": "https://github.com/renas-ghazi/laravel-resource-scaffold"
+  },
+  "license": "MIT",
+  "require": {
+    "php": "^8.1",
+    "illuminate/support": "^10.0|^11.0|^12.0",
+    "illuminate/console": "^10.0|^11.0|^12.0",
+    "illuminate/filesystem": "^10.0|^11.0|^12.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Renas\\LaravelResourceScaffold\\": "src/LaravelResourceScaffold/",
+      "Renas\\InertiaPageGenerator\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Renas\\LaravelResourceScaffold\\LaravelResourceScaffoldServiceProvider"
+      ]
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}

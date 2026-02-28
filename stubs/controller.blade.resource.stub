@@ -1,0 +1,70 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ controllerNamespace }};
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
+class {{ controllerClass }} extends Controller
+{
+    public function index()
+    {
+        return view('{{ bladeIndexView }}');
+    }
+
+    public function create()
+    {
+        return view('{{ bladeCreateView }}');
+    }
+
+    public function store(Request $request)
+    {
+        // $data = $request->validate([
+        //     // ...
+        // ]);
+
+        // \App\Models\{{ model }}::create($data);
+
+        return redirect()
+            ->route('{{ routeResource }}.index')
+            ->with('success', '{{ model }} created.');
+    }
+
+    public function show(\App\Models\{{ model }} ${{ modelVariable }})
+    {
+        return view('{{ bladeShowView }}', [
+            '{{ modelVariable }}' => ${{ modelVariable }},
+        ]);
+    }
+
+    public function edit(\App\Models\{{ model }} ${{ modelVariable }})
+    {
+        return view('{{ bladeEditView }}', [
+            '{{ modelVariable }}' => ${{ modelVariable }},
+        ]);
+    }
+
+    public function update(Request $request, \App\Models\{{ model }} ${{ modelVariable }})
+    {
+        // $data = $request->validate([
+        //     // ...
+        // ]);
+
+        // ${{ modelVariable }}->update($data);
+
+        return redirect()
+            ->route('{{ routeResource }}.index')
+            ->with('success', '{{ model }} updated.');
+    }
+
+    public function destroy(\App\Models\{{ model }} ${{ modelVariable }})
+    {
+        // ${{ modelVariable }}->delete();
+
+        return redirect()
+            ->route('{{ routeResource }}.index')
+            ->with('success', '{{ model }} deleted.');
+    }
+}

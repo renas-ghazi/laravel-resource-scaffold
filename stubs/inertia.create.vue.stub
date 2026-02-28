@@ -1,0 +1,39 @@
+<script setup>
+import { Head, useForm, Link } from '@inertiajs/vue3'
+
+const form = useForm({
+  // name: '',
+})
+
+const submit = () => {
+  form.post(route('{{ routeResource }}.store'))
+}
+</script>
+
+<template>
+  <Head title="Create" />
+
+  <div class="p-6">
+    <div class="flex items-center justify-between mb-6">
+      <h1 class="text-xl font-semibold">Create</h1>
+
+      <Link class="text-sm underline" :href="route('{{ routeResource }}.index')">
+        Back
+      </Link>
+    </div>
+
+    <form @submit.prevent="submit" class="rounded-xl border bg-white p-4 space-y-4">
+      <div class="text-sm text-gray-600">
+        Your Create page is ready ✅
+      </div>
+
+      <button
+        type="submit"
+        class="px-4 py-2 rounded-lg bg-black text-white hover:opacity-90 disabled:opacity-50"
+        :disabled="form.processing"
+      >
+        Save
+      </button>
+    </form>
+  </div>
+</template>
