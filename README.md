@@ -1,123 +1,81 @@
-# Renas Laravel Resource Scaffold
+# Laravel Resource Scaffold
 
-Interactive scaffold for Laravel with Inertia (Vue/React) or Blade:
+`renas/laravel-resource-scaffold` is an Artisan generator for Laravel resources using:
 
-- Migration (create table)
-- Model (if missing)
-- Controller (optional subfolders)
-- Pages/views (Index + Create by default)
+- Inertia + Vue
+- Inertia + React
+- Blade
+
+It scaffolds migration, model (if missing), controller, and UI pages/views.
+
+## Requirements
+
+- PHP 8.1+
+- Laravel 10, 11, or 12
 
 ## Installation
-
-### For users (public install)
-
-Install from Packagist:
 
 ```bash
 composer require renas/laravel-resource-scaffold
 ```
 
-No `repositories` config and no `packages/` folder are needed for normal users.
-
-### If not on Packagist yet (GitHub VCS fallback)
-
-Add this to your Laravel app `composer.json`:
-
-```json
-"repositories": [
-  {
-    "type": "vcs",
-    "url": "https://github.com/renas-ghazi/laravel-resource-scaffold"
-  }
-]
-```
-
-Then install:
-
-```bash
-composer require renas/laravel-resource-scaffold:dev-main
-```
-
-### For contributors (local development only)
-
-Use `path` repositories only when developing the package locally:
-
-```json
-"repositories": [
-  { "type": "path", "url": "packages/renas/laravel-resource-scaffold" }
-]
-```
-
-```bash
-composer require renas/laravel-resource-scaffold:dev-main
-```
-
 ## Usage
-
-Command:
 
 ```bash
 php artisan resource:scaffold
 ```
 
-Options:
+### Options
 
-- `--dry-run` Show what would be created without writing files
-- `--force` Overwrite without asking
-- `--stack=inertia-vue|inertia-react|blade` Choose UI stack (default: `inertia-vue`)
-- `--ts` Generate TypeScript pages (`<script setup lang="ts">` for Vue, `.tsx` for React)
-- `--resource` Generate full resource controller methods
-- `--pages=Index,Create,Edit,Show` Choose which pages/views to generate (default: `Index,Create`)
+- `--stack=inertia-vue|inertia-react|blade` UI stack (default: `inertia-vue`)
+- `--pages=Index,Create,Edit,Show` pages/views to generate (default: `Index,Create`)
+- `--resource` generate full resource controller methods
+- `--ts` generate TypeScript pages (`.vue <script lang="ts">` / `.tsx`)
+- `--dry-run` preview files without writing
+- `--force` overwrite existing files without prompts
 
-Examples:
+### Examples
 
 ```bash
 # Inertia Vue (default)
 php artisan resource:scaffold
 
-# Inertia React
-php artisan resource:scaffold --stack=inertia-react
+# Inertia React + TypeScript
+php artisan resource:scaffold --stack=inertia-react --ts --resource --pages=Index,Create,Edit,Show
 
 # Blade
-php artisan resource:scaffold --stack=blade
+php artisan resource:scaffold --stack=blade --resource --pages=Index,Create,Edit,Show
 ```
 
-Publish package stubs for customization:
+## Stub Customization
+
+Publish stubs:
 
 ```bash
 php artisan vendor:publish --tag=laravel-resource-scaffold-stubs
 ```
 
-Published stubs are loaded from:
+Customize generated templates in:
 
-- `stubs/laravel-resource-scaffold/*` (preferred)
-- `stubs/inertia-scaffold/*` (legacy fallback, still supported)
-- `stubs/inertia-page-generator/*` (legacy fallback, still supported)
+- `stubs/laravel-resource-scaffold/*`
 
-## Output
+## Generated Files
+
+Always generated:
 
 - `database/migrations/*_create_{table}_table.php`
 - `app/Models/{Model}.php` (only if missing)
 - `app/Http/Controllers/{Folder}/{Controller}.php`
+
+Stack output:
+
 - `resources/js/Pages/{Folder}/*.vue` for `--stack=inertia-vue`
 - `resources/js/Pages/{Folder}/*.jsx|*.tsx` for `--stack=inertia-react`
 - `resources/views/{folder}/*.blade.php` for `--stack=blade`
 
-## Release (public availability)
+## Route Example
 
-1. Tag a stable release:
-
-```bash
-git tag v1.0.0
-git push origin v1.0.0
-```
-
-2. Submit repository to Packagist: <https://packagist.org/packages/submit>
-3. Enable Packagist auto-update webhook for GitHub.
-
-## Notes
-
-Routes are not auto-injected (by design). Example:
+Routes are intentionally not auto-injected.
 
 ```php
 Route::resource('users', \App\Http\Controllers\Admin\Users\UserController::class);
