@@ -54,17 +54,10 @@ composer require renas/laravel-resource-scaffold:dev-main
 
 ## Usage
 
-Preferred command:
+Command:
 
 ```bash
 php artisan resource:scaffold
-```
-
-Backward-compatible commands (still supported):
-
-```bash
-php artisan inertia:scaffold
-php artisan generate:new-page
 ```
 
 Options:

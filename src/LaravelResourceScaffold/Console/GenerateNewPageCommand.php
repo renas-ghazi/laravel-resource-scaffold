@@ -14,15 +14,13 @@ use RuntimeException;
 
 class GenerateNewPageCommand extends Command
 {
-    protected $signature = 'generate:new-page
+    protected $signature = 'resource:scaffold
         {--force : Overwrite existing files without asking}
         {--dry-run : Show what would be generated without writing files}
         {--ts : Generate TypeScript pages for Inertia stacks}
         {--resource : Generate full resource controller methods}
         {--pages= : Comma-separated pages to generate (Index,Create,Edit,Show)}
         {--stack=inertia-vue : UI stack (inertia-vue, inertia-react, blade)}';
-
-    protected $aliases = ['inertia:scaffold', 'resource:scaffold'];
 
     protected $description = 'Interactive scaffold: migration + model + controller + UI pages/views.';
 
@@ -401,7 +399,7 @@ class GenerateNewPageCommand extends Command
             return $legacyInertiaPageGeneratorPath;
         }
 
-        return dirname(__DIR__, 2) . '/stubs/' . $stubFile;
+        return dirname(__DIR__, 3) . '/stubs/' . $stubFile;
     }
 
     private function assertPathWithin(string $candidatePath, string $basePath, string $label): void
