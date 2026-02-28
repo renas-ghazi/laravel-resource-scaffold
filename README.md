@@ -5,22 +5,48 @@ Interactive scaffold for Laravel with Inertia (Vue/React) or Blade:
 - Migration (create table)
 - Model (if missing)
 - Controller (optional subfolders)
-- Pages/views (Index + Create)
+- Pages/views (Index + Create by default)
 
-## Install (local path)
+## Installation
 
-1) Put package here:
-`packages/renas/laravel-resource-scaffold`
+### For users (public install)
 
-2) Add path repository to your Laravel app `composer.json`:
+Install from Packagist:
+
+```bash
+composer require renas/laravel-resource-scaffold
+```
+
+No `repositories` config and no `packages/` folder are needed for normal users.
+
+### If not on Packagist yet (GitHub VCS fallback)
+
+Add this to your Laravel app `composer.json`:
+
+```json
+"repositories": [
+  {
+    "type": "vcs",
+    "url": "https://github.com/renas-ghazi/laravel-resource-scaffold"
+  }
+]
+```
+
+Then install:
+
+```bash
+composer require renas/laravel-resource-scaffold:dev-main
+```
+
+### For contributors (local development only)
+
+Use `path` repositories only when developing the package locally:
 
 ```json
 "repositories": [
   { "type": "path", "url": "packages/renas/laravel-resource-scaffold" }
 ]
 ```
-
-3) Require it:
 
 ```bash
 composer require renas/laravel-resource-scaffold:dev-main
@@ -34,7 +60,7 @@ Preferred command:
 php artisan resource:scaffold
 ```
 
-Backward-compatible command (still supported):
+Backward-compatible commands (still supported):
 
 ```bash
 php artisan inertia:scaffold
@@ -84,9 +110,21 @@ Published stubs are loaded from:
 - `resources/js/Pages/{Folder}/*.jsx|*.tsx` for `--stack=inertia-react`
 - `resources/views/{folder}/*.blade.php` for `--stack=blade`
 
+## Release (public availability)
+
+1. Tag a stable release:
+
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+2. Submit repository to Packagist: <https://packagist.org/packages/submit>
+3. Enable Packagist auto-update webhook for GitHub.
+
 ## Notes
 
-Routes are not injected automatically (by design). Add manually:
+Routes are not auto-injected (by design). Example:
 
 ```php
 Route::resource('users', \App\Http\Controllers\Admin\Users\UserController::class);
